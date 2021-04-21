@@ -5,6 +5,14 @@ from DataBase.DB_interaction import *
 
 ALLOWED_PURCHASE_LOCATIONS = {'Israel'}
 
+#argument names
+SHOW_ID = 'showId'
+USER_ID = 'userId'
+LAT = 'lat'
+LNG = 'lng'
+RESTRICTION = 'restriction'
+VIEWS = 'views'
+
 # error messages
 SHOW_NOT_FOUND_MSG = "show not found"
 ALREADY_PURCHASED_MSG = "user already purchased this show"

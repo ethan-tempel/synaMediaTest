@@ -3,15 +3,8 @@ from API_utils import *
 
 app = Flask(__name__)
 
-#argument names
-SHOW_ID = 'showId'
-USER_ID = 'userId'
-LAT = 'lat'
-LNG = 'lng'
-VIEWS = 'views'
 
-
-
+# TODO: delete this after reviewing API - not part of the API
 @app.route('/')
 def func():
     return str(local_db), 200
@@ -19,7 +12,6 @@ def func():
 
 @app.route('/purchase', methods=['POST'])
 def purchase():
-
     show_id, user_id, lat, lng = parse_arguments([SHOW_ID, USER_ID, LAT, LNG])
 
     if not show_exists(show_id):
@@ -48,7 +40,11 @@ def add_restriction():
 
 @app.route('/restrictions', methods=['GET'])
 def get_restriction():
-    pass
+    show_id, = parse_arguments([SHOW_ID])
+    if not show_exists(show_id):
+        return SHOW_NOT_FOUND_MSG, 404
+
+    return {RESTRICTION: list(get_restrictions(show_id))}, 200
 
 
 @app.route('/restrictions', methods=['DELETE'])
